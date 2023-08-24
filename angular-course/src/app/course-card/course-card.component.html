@@ -1,0 +1,50 @@
+<div class="course-card" *ngIf="data" [ngClass]="cardClasses()">
+  <div class="course-title" [ngStyle]="cardStyles()">
+    {{ cardIndex }} - {{ data.description }}
+    <!-- app componentten gonderilen veri-->
+  </div>
+  <img
+    width="300"
+    alt="Angular Logo"
+    [src]="data.iconUrl"
+    *ngIf="isImageVisible(); else noImage"
+  />
+  <!-- src="{{data.iconUrl}}"-->
+  <!-- *nfIf(false) ise tag gosterilmez true ise gosterilir. -->
+
+  <ng-template #noImage> <p>No image is available.</p> </ng-template>
+
+  <div class="course-description">
+    {{ data.longDescription }}
+  </div>
+
+  <!-- <div class="course-category" [ngSwitch]="data.category">
+    <div class="category" *ngSwitchCase="'BEGINNER'">Beginner</div>
+    <div class="category" *ngSwitchCase="'INTERMEDIATE'">Intermediate</div>
+    <div class="category" *ngSwitchCase="'ADVANCED'">Advanced</div>
+    <div class="category" *ngSwitchDefault>All Levels</div>
+  </div> -->
+
+  <!-- eger ngif ngswitch gibi kosulları yerleştireceğin uyugn bir tag scope'u yoksa ng-cantainer kullanmalisin bu sayade sayfan  ekstra DOM elementi olusturmadan calisir.  -->
+
+  <ng-container [ngSwitch]="data.category">
+    <div class="course-category">
+      <ng-container *ngSwitchCase="'BEGINNER'">
+        <div class="category">Beginner</div>
+      </ng-container>
+      <div class="category" *ngSwitchCase="'INTERMEDIATE'">Intermediate</div>
+      <div class="category" *ngSwitchCase="'ADVANCED'">Advanced</div>
+      <div class="category" *ngSwitchDefault>All Levels</div>
+    </div>
+  </ng-container>
+
+  <button (click)="onCourseViewed()">View Course</button>
+</div>
+
+<!-- [ngClass]="'beginner'" eklemek istedigimiz classi yazabilirirz. -->
+
+<!-- [ngClass]="{'beginner':false, 'course-card':true}" :::> classlari object olarak true false gonderebiliriz. -->
+
+<!--  [style.text-decoration]="'underline'" -->
+
+<!-- [ngStyle] = "'text-decoration':'underline'," -->
