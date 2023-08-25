@@ -1,6 +1,6 @@
 <div class="course-card" *ngIf="data" [ngClass]="cardClasses()">
   <div class="course-title" [ngStyle]="cardStyles()">
-    {{ cardIndex }} - {{ data.description }}
+    {{ cardIndex || '' }} - {{ data.description }}
     <!-- app componentten gonderilen veri-->
   </div>
   <img

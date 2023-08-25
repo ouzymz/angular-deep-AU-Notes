@@ -5,33 +5,35 @@
   />
 </div>
 
-<div class="courses">
+<div class="courses" #container>
   <!-- <course-card (click)="onCourseSelected()" [data]="coreCourse"></course-card> Each course-card component has its own data scope -- [data] input olarak verilen datadir -->
   <!-- <course-card (click)="onCourseSelected()" [data]="rxjsCourse"></course-card> -->
   <!-- <course-card (click)="onCourseSelected()" ></course-card> // @input required yapildigi icin burada gerekli inputu vermeden bu componenti kullanamam -->
   <!-- <course-card (courseSelected)="courseSelected($event)" [data]="ngrxCourse"></course-card>olusturdugum componenti istedigin kadar kullanabilirim -->
   <!-- <course-card (courseSelected)="courseSelected($event)" [data]="afbCourse"></course-card>COSTUMEVENT YAKALAYACAK courseSelected tanimlandi -->
 
-<div class="demo">
-     <div>Start Date : {{startDate | date:'MMM/dd/yyyy'}}</div><!-- pipe kullanimi ornegidir: date olarak gelen veriyi date formatında yazdirmamizi saglar. -->
-</div>
+  <div class="demo">Start Date : {{ startDate | date : "MMM/dd/yyyy" }}</div>
+  <!-- pipe kullanimi ornegidir: date olarak gelen veriyi date formatında yazdirmamizi saglar. -->
+  <div class="demo">string : {{ title | titlecase }}</div>
+  <div class="demo">number : {{ number | number : "3.3-5" }}</div>
+  <div class="demo">parcent : {{ rate | percent }}</div>
+  <!-- <div class="demo">debbug : {{courses | json}}</div>debug faz icin kullanilabilecek muhtesem pipe elemani. ilgili degeri goruntulemek icin {{nesne | json}} kullanilir1!!  -->
 
-<div class="demo">string : {{title | titlecase}}</div>
-<div class="demo">number : {{number | number:'3.3-5'}}</div>
-<div class="demo">parcent : {{rate | percent}}</div>
-
- <div> {{courses | json}}</div><!-- debug faz icin kullanilabilecek muhtesem pipe elemani. ilgili degeri goruntulemek icin {{nesne | json}} kullanilir1!!  -->
-
-  <!-- ---------- ngFor ----------- -->
-
-  <course-card *ngFor="let course of courses | slice : 0:4 ; index as i; first as isFirst" [class.is-first]="isFirst" (courseSelected)="courseSelected($event)" [data]="course" [cardIndex]="i+1"></course-card>
-
+  <!-- <course-card *ngFor="let course of courses | slice : 0:4 ; index as i; first as isFirst" [class.is-first]="isFirst" (courseSelected)="courseSelected($event)" [data]="course" [cardIndex]="i+1"></course-card> -->
   <!-- ---------- | slice : 0:3  ===> arrayin ilk 4 elemanini alacak sekilde parcaladik.s----------- -->
 
-  <!-- ---------- ngIf ----------- -->
 
-  <!-- ---------- ngIf ----------- -->
+<course-card #cardRef1
+    (courseSelected)="courseSelected($event)"
+    [data]="courses[1]">
+  </course-card>
 
+
+  CourseCard'a referans numarasi vererek 
+  <course-card #cardRef2 
+    (courseSelected)="courseSelected($event)"
+    [data]="courses[2]">
+  </course-card>
 
 
 
