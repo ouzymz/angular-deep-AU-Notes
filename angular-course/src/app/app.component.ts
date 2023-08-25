@@ -34,11 +34,9 @@ export class AppComponent implements AfterViewInit {
   //   console.log(`Course Card is clicked`, course);
   // } //customevent tetiklendiginde calisacak method
   courseSelected(course: Course) {
-    
-
-    console.log("Container Div:", this.card1,"card1 data: ", this.card1.data);
+    console.log("Container Div:", this.card1, "card1 data: ", this.card1.data);
     console.log("Container Div:", this.card2); //ulastigimiz html elemetini yazdirdik.
-    console.log("Container Div:" , this.container);
+    console.log("Container Div:", this.container);
   }
 
   onCourseSelected() {
